@@ -18,7 +18,7 @@ namespace DatingApp.Logic.Users.CreateUserCommand
 
         }
 
-        public int CreateUser(string firstName, string lastName, string email, int age, Gender gender, Orientation orientation, string bio)
+        public int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio)
         {
             //Change with MinioIntegration
             List<string> interests = new List<string>{ "first", "second" };
@@ -33,7 +33,7 @@ namespace DatingApp.Logic.Users.CreateUserCommand
                     FirstName = firstName,
                     LastName = lastName,
                     Email = email,
-                    Age = age,
+                    DateOfBirth = dateOfBirth,
                     Gender = gender,
                     Orientation = orientation,
                     Bio = bio,

@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
@@ -25,7 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Logic\UserMedia\" />
-    <Folder Include="Logic\Users\UpdateUserDetailsCommand\" />
   </ItemGroup>
 
 </Project>

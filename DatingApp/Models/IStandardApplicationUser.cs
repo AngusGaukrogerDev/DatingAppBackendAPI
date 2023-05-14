@@ -8,7 +8,7 @@ namespace DatingApp.Models
         string FirstName { get; set; }
         string LastName { get; set; }
         string Email { get; set; }
-        int Age { get; set; }
+        DateTime DateOfBirth { get; set; }
         Gender Gender { get; set; }
         Orientation Orientation { get; set; }
         string Bio { get; set; }

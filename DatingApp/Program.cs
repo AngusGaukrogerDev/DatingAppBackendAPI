@@ -1,6 +1,7 @@
 using DatingApp.Data;
 using DatingApp.Logic.Users.CreateUserCommand;
 using DatingApp.Logic.Users.DeleteUserCommand;
+using DatingApp.Logic.Users.UpdateUserDetailsCommand;
 using DatingApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -27,12 +28,15 @@ builder.Services.AddScoped<IStandardApplicationUser, StandardApplicationUser>();
 
 builder.Services.AddScoped<ICreateUserCommand, CreateUserCommand>();
 builder.Services.AddScoped<IDeleteUserCommand, DeleteUserCommand>();
+builder.Services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
 
 //Data
 
 builder.Services.AddScoped<IAppDbContext, AppDbContext>();
 
 var app = builder.Build();
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
