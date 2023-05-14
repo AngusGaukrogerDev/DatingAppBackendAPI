@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Logic\UserMedia\" />
     <Folder Include="Logic\Users\UpdateUserDetailsCommand\" />
-    <Folder Include="Logic\Users\DeleteUserCommand\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 using DatingApp.Data;
 using DatingApp.Logic.Users.CreateUserCommand;
+using DatingApp.Logic.Users.DeleteUserCommand;
 using DatingApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -25,6 +26,7 @@ builder.Services.AddScoped<IStandardApplicationUser, StandardApplicationUser>();
 //Logic
 
 builder.Services.AddScoped<ICreateUserCommand, CreateUserCommand>();
+builder.Services.AddScoped<IDeleteUserCommand, DeleteUserCommand>();
 
 //Data
 
