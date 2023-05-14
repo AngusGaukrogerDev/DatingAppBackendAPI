@@ -27,7 +27,7 @@ namespace DatingApp.Controllers
             _updateUserCommand = updateUserCommand;
         }
 
-        [HttpPost("/api/UserController/CreateUser")]
+        [HttpPost("/api/UserController/User/CreateUser")]
         public int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio)
         {
             int statusCode = _createUserCommand.CreateUser(firstName, lastName, email, dateOfBirth, gender, orientation, bio);
@@ -35,7 +35,7 @@ namespace DatingApp.Controllers
             return statusCode;
         }
 
-        [HttpDelete("/api/UserController/DeleteUser")]
+        [HttpDelete("/api/UserController/User/DeleteUser")]
         public int DeleteUser(int id)
         {
             int statusCode = _deleteUserCommand.DeleteUser(id);
@@ -43,10 +43,29 @@ namespace DatingApp.Controllers
             return statusCode;
         }
         
-        [HttpPut("/api/UserController/UpdateUser")]
+        //Make sure frontend always sends data with all args filled in for now - Even if values are the same for some args
+        //May require an update for each parameter... :/
+        [HttpPut("/api/UserController/User/UpdateUser")]
         public int UpdateUser(int id,  string email, Gender gender, Orientation orientation, string bio)
         {
+
             int statusCode = _updateUserCommand.UpdateUser(id, email, gender, orientation, bio);
+
+            return statusCode;
+        }
+
+        [HttpPost("/api/UserController/UserMedia/UploadProfileImageToBucket")]
+        public int UploadProfileImageToBucket()
+        {
+            int statusCode = 0;
+
+            return statusCode;
+        }
+
+        [HttpPost("/api/UserController/UserMedia/RemoveProfileImageFromBucket")]
+        public int RemoveProfileImageFromBucket()
+        {
+            int statusCode = 0;
 
             return statusCode;
         }

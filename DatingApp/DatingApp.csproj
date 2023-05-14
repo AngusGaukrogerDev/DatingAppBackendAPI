@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logic\UserMedia\" />
+    <Folder Include="Logic\UserMedia\DeleteProfileImageFromBucket\" />
+    <Folder Include="Logic\UserMedia\UploadProfileImageToBucket\" />
   </ItemGroup>
 
 </Project>

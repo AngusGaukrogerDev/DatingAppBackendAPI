@@ -23,14 +23,7 @@ namespace DatingApp.Logic.Users.UpdateUserDetailsCommand
 
             if (user != null) 
             {
-                user.Email = email;
-                user.Gender = gender;
-                user.Bio = bio;
-                user.Orientation = orientation;
-
-                _appDbContext.SaveChanges();
-
-                _statusCode = StatusCodes.Status200OK;
+                _statusCode = TestForNullValuesAndAssign(user, email, gender, orientation, bio);
             }
             else
             {
@@ -42,6 +35,25 @@ namespace DatingApp.Logic.Users.UpdateUserDetailsCommand
 
         }
 
+        private int TestForNullValuesAndAssign(StandardApplicationUser user, string email, Gender gender, Orientation orientation, string bio) 
+        {
+            int _statusCode = 0;
 
+            if(email != null) 
+            {
+                user.Email = email;
+            }        
+            if(bio != null) 
+            {
+                user.Bio = bio;
+            }
+            
+            user.Orientation = orientation;       
+            user.Gender = gender;
+
+            _appDbContext.SaveChanges();
+
+            return _statusCode;
+        }
     }
 }
