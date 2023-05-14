@@ -7,5 +7,18 @@ namespace DatingApp.Controllers
     [ApiController]
     public class MatchFeedController : ControllerBase
     {
+        [HttpGet("/api/MatchFeedController/GetNextUserInFeed")]
+        public ActionResult GetNextUserInFeed()
+        {
+            return Ok();
+
+        }
+
+        [HttpPost("/api/MatchFeedController/SendLikeToCurrentUserInFeed")]
+        public ActionResult SendLikeToCurrentUserInFeed()
+        {
+            return Ok();
+        }
+
     }
 }

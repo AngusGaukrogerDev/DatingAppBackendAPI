@@ -23,8 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logic\UserMedia\DeleteProfileImageFromBucket\" />
-    <Folder Include="Logic\UserMedia\UploadProfileImageToBucket\" />
+    <Folder Include="Logic\MatchFeed\GetNextUserInFeedCommand\" />
+    <Folder Include="Logic\UserMedia\DeleteProfileImageFromBucketCommand\" />
+    <Folder Include="Logic\UserMedia\UploadProfileImageToBucketCommand\" />
   </ItemGroup>
 
 </Project>

@@ -25,7 +25,7 @@ namespace DatingApp.Logic.Users.CreateUserCommand
             List<string> photos = new List<string>{ "first", "second" };
 
 
-            int _idValue = _appDbContext.StandardApplicationUser.Count();
+            int _idValue = _appDbContext.StandardApplicationUser.Count(); //TODO: Angus - Fix this bug only allowing 7 users in the db
 
             _appDbContext.StandardApplicationUser.Add(
                 new StandardApplicationUser

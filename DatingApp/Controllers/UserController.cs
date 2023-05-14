@@ -28,46 +28,46 @@ namespace DatingApp.Controllers
         }
 
         [HttpPost("/api/UserController/User/CreateUser")]
-        public int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio)
+        public ActionResult CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio)
         {
             int statusCode = _createUserCommand.CreateUser(firstName, lastName, email, dateOfBirth, gender, orientation, bio);
 
-            return statusCode;
+            return Ok(statusCode);
         }
 
         [HttpDelete("/api/UserController/User/DeleteUser")]
-        public int DeleteUser(int id)
+        public ActionResult DeleteUser(int id)
         {
             int statusCode = _deleteUserCommand.DeleteUser(id);
 
-            return statusCode;
+            return Ok(statusCode);
         }
         
         //Make sure frontend always sends data with all args filled in for now - Even if values are the same for some args
         //May require an update for each parameter... :/
         [HttpPut("/api/UserController/User/UpdateUser")]
-        public int UpdateUser(int id,  string email, Gender gender, Orientation orientation, string bio)
+        public ActionResult UpdateUser(int id,  string email, Gender gender, Orientation orientation, string bio)
         {
 
             int statusCode = _updateUserCommand.UpdateUser(id, email, gender, orientation, bio);
 
-            return statusCode;
+            return Ok(statusCode);
         }
 
         [HttpPost("/api/UserController/UserMedia/UploadProfileImageToBucket")]
-        public int UploadProfileImageToBucket()
+        public ActionResult UploadProfileImageToBucket()
         {
             int statusCode = 0;
 
-            return statusCode;
+            return Ok(statusCode);
         }
 
         [HttpPost("/api/UserController/UserMedia/RemoveProfileImageFromBucket")]
-        public int RemoveProfileImageFromBucket()
+        public ActionResult RemoveProfileImageFromBucket()
         {
             int statusCode = 0;
 
-            return statusCode;
+            return Ok(statusCode);
         }
     }
 }
