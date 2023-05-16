@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -6,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DatingApp.Migrations
 {
-    public partial class UserInit : Migration
+    public partial class DbInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,10 +20,18 @@ namespace DatingApp.Migrations
                     Interests = table.Column<List<string>>(type: "text[]", nullable: false),
                     Photos = table.Column<List<string>>(type: "text[]", nullable: false),
                     Bio = table.Column<string>(type: "text", nullable: false),
+                    JobTitle = table.Column<string>(type: "text", nullable: true),
+                    CompanyName = table.Column<string>(type: "text", nullable: true),
+                    CourseName = table.Column<string>(type: "text", nullable: true),
+                    UniversityName = table.Column<string>(type: "text", nullable: true),
+                    Hometown = table.Column<string>(type: "text", nullable: true),
+                    Nationality = table.Column<string>(type: "text", nullable: true),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    Age = table.Column<int>(type: "integer", nullable: false)
+                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Gender = table.Column<int>(type: "integer", nullable: false),
+                    Orientation = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -26,6 +26,7 @@
     <Folder Include="Logic\MatchFeed\GetNextUserInFeedCommand\" />
     <Folder Include="Logic\UserMedia\DeleteProfileImageFromBucketCommand\" />
     <Folder Include="Logic\UserMedia\UploadProfileImageToBucketCommand\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

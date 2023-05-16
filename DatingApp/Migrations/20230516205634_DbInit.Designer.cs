@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatingApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230514195031_AgeToDOBChange")]
-    partial class AgeToDOBChange
+    [Migration("20230516205634_DbInit")]
+    partial class DbInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,12 @@ namespace DatingApp.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CourseName")
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
 
@@ -51,12 +57,21 @@ namespace DatingApp.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Hometown")
+                        .HasColumnType("text");
+
                     b.Property<List<string>>("Interests")
                         .IsRequired()
                         .HasColumnType("text[]");
 
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("text");
+
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nationality")
                         .HasColumnType("text");
 
                     b.Property<int>("Orientation")
@@ -65,6 +80,9 @@ namespace DatingApp.Migrations
                     b.Property<List<string>>("Photos")
                         .IsRequired()
                         .HasColumnType("text[]");
+
+                    b.Property<string>("UniversityName")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

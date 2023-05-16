@@ -20,13 +20,10 @@ namespace DatingApp.Logic.Users.CreateUserCommand
 
         public int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio)
         {
-            //Change with MinioIntegration
+            //TODO: Angus - Change with MinioIntegration
             List<string> interests = new List<string>{ "first", "second" };
             List<string> photos = new List<string>{ "first", "second" };
-
-
-            int _idValue = _appDbContext.StandardApplicationUser.Count(); //TODO: Angus - Fix this bug only allowing 7 users in the db
-
+            
             _appDbContext.StandardApplicationUser.Add(
                 new StandardApplicationUser
                 {
@@ -37,13 +34,12 @@ namespace DatingApp.Logic.Users.CreateUserCommand
                     Gender = gender,
                     Orientation = orientation,
                     Bio = bio,
-                    Id = _idValue,
                     Interests = interests,
                     Photos = photos,
 
                 }
             ); 
-
+            
             _appDbContext.SaveChanges();
 
             return StatusCodes.Status200OK;
