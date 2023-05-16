@@ -23,7 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logic\MatchFeed\GetNextUserInFeedCommand\" />
+    <Folder Include="Logic\Filters\FilterUsersByMatchingInterestsCommand\" />
+    <Folder Include="Logic\Filters\FilterUsersByLocationCommand\" />
+    <Folder Include="Logic\Filters\FilterUsersByAgeCommand\" />
     <Folder Include="Logic\UserMedia\DeleteProfileImageFromBucketCommand\" />
     <Folder Include="Logic\UserMedia\UploadProfileImageToBucketCommand\" />
     <Folder Include="Migrations\" />
