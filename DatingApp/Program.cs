@@ -1,4 +1,5 @@
 using DatingApp.Data;
+using DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand;
 using DatingApp.Logic.Users.CreateUserCommand;
 using DatingApp.Logic.Users.DeleteUserCommand;
 using DatingApp.Logic.Users.UpdateUserDetailsCommand;
@@ -29,6 +30,8 @@ builder.Services.AddScoped<IStandardApplicationUser, StandardApplicationUser>();
 builder.Services.AddScoped<ICreateUserCommand, CreateUserCommand>();
 builder.Services.AddScoped<IDeleteUserCommand, DeleteUserCommand>();
 builder.Services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
+
+builder.Services.AddScoped<IGetNextUserInFeedCommand, GetNextUserInFeedCommand>();
 
 //Data
 

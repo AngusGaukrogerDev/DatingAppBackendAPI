@@ -1,11 +1,9 @@
 ﻿using DatingApp.Data;
-using DatingApp.Logic.Users.CreateUserCommand;
 using DatingApp.Models;
-using System.Collections.Generic;
 
 namespace DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand
 {
-    public class GetNextUserInFeedCommand
+    public class GetNextUserInFeedCommand : IGetNextUserInFeedCommand
     {
         private readonly ILogger<GetNextUserInFeedCommand> _logger;
         private readonly IAppDbContext _appDbContext;
@@ -25,7 +23,7 @@ namespace DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand
             return nextFilteredUser;
         }
 
-        public StandardApplicationUser SelectUserRandomlyFromListOfUsers(int userId)
+        private StandardApplicationUser SelectUserRandomlyFromListOfUsers(int userId)
         {
             var random = new Random();
 
@@ -36,7 +34,7 @@ namespace DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand
             return filteredUsers[index];
         }
 
-        public List<StandardApplicationUser> GetFilteredUsers(int userId)
+        private List<StandardApplicationUser> GetFilteredUsers(int userId)
         {
 
             List<string> usersInterests = GetUsersInterests(userId);
@@ -47,20 +45,20 @@ namespace DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand
 
         }
 
-        public List<string> GetUsersInterests(int userId)
+        private List<string> GetUsersInterests(int userId)
         {
-            List<string> interests = new List<string>();
 
-            //TODO: Angus - Db Logic here..... Query database and use linq to filter by user ID. Grab interests data from this
+            List<string> interests = _appDbContext.StandardApplicationUser.Where(u => u.Id == userId).Select(u => u.Interests).FirstOrDefault();
 
             return interests;
         }
 
-        public List<StandardApplicationUser> FindUsersMeetingSearchParameters(List<string> searchingUsersInterests)
+        private List<StandardApplicationUser> FindUsersMeetingSearchParameters(List<string> searchingUsersInterests)
         {
-            List<StandardApplicationUser> usersWithMatchingInterests = new List<StandardApplicationUser>();
 
             //TODO: Angus -  Db Logic Here.... Search database for users with matching interests
+            List<StandardApplicationUser> usersWithMatchingInterests = _appDbContext.StandardApplicationUser.Where(u => searchingUsersInterests.All(interest => u.Interests.Contains(interest))).ToList();
+            //List<StandardApplicationUser> usersWithMatchingInterests = _appDbContext.StandardApplicationUser.Add(u => u.Interests == searchingUsersInterests);
 
             return usersWithMatchingInterests;
 
