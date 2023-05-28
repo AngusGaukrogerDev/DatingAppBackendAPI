@@ -6,10 +6,10 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
 {
     public class FilterUsersByMatchingInterestsCommand : IFilterUsersByMatchingInterestsCommand
     {
-        private readonly ILogger<GetNextUserInFeedCommand> _logger;
+        private readonly ILogger<FilterUsersByMatchingInterestsCommand> _logger;
         private readonly IAppDbContext _appDbContext;
 
-        public FilterUsersByMatchingInterestsCommand(ILogger<GetNextUserInFeedCommand> logger, IAppDbContext appDbContext)
+        public FilterUsersByMatchingInterestsCommand(ILogger<FilterUsersByMatchingInterestsCommand> logger, IAppDbContext appDbContext)
         {
             _logger = logger;
             _appDbContext = appDbContext;
@@ -26,7 +26,7 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
             return filteredUsers[index];
         }
 
-        private List<StandardApplicationUser> GetFilteredUsersByInterest(int userId)
+        public List<StandardApplicationUser> GetFilteredUsersByInterest(int userId)
         {
 
             List<string> usersInterests = GetUsersInterests(userId);

@@ -6,10 +6,10 @@ namespace DatingApp.Logic.Filters.FilterUsersByLocationCommand
 {
     public class FilterUsersByLocationCommand : IFilterUsersByLocationCommand
     {
-        private readonly ILogger<GetNextUserInFeedCommand> _logger;
+        private readonly ILogger<FilterUsersByLocationCommand> _logger;
         private readonly IAppDbContext _appDbContext;
 
-        public FilterUsersByLocationCommand(ILogger<GetNextUserInFeedCommand> logger, IAppDbContext appDbContext)
+        public FilterUsersByLocationCommand(ILogger<FilterUsersByLocationCommand> logger, IAppDbContext appDbContext)
         {
             _logger = logger;
             _appDbContext = appDbContext;
@@ -27,7 +27,7 @@ namespace DatingApp.Logic.Filters.FilterUsersByLocationCommand
 
         }
 
-        private List<StandardApplicationUser> GetListOfNearbyUsers(int userId)
+        public List<StandardApplicationUser> GetListOfNearbyUsers(int userId)
         {
             StandardApplicationUser currentUser = _appDbContext.StandardApplicationUser.Where(u => u.Id == userId).FirstOrDefault();
 
