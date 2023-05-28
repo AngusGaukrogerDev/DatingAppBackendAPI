@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatingApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230516205634_DbInit")]
-    partial class DbInit
+    [Migration("20230528141323_DbCleanupAndInit")]
+    partial class DbCleanupAndInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,6 +41,10 @@ namespace DatingApp.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("CourseName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CurrentLocationRegion")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateOfBirth")

@@ -1,4 +1,6 @@
 using DatingApp.Data;
+using DatingApp.Logic.Filters.FilterUsersByLocationCommand;
+using DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand;
 using DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand;
 using DatingApp.Logic.Users.CreateUserCommand;
 using DatingApp.Logic.Users.DeleteUserCommand;
@@ -32,6 +34,9 @@ builder.Services.AddScoped<IDeleteUserCommand, DeleteUserCommand>();
 builder.Services.AddScoped<IUpdateUserCommand, UpdateUserCommand>();
 
 builder.Services.AddScoped<IGetNextUserInFeedCommand, GetNextUserInFeedCommand>();
+
+builder.Services.AddScoped<IFilterUsersByMatchingInterestsCommand, FilterUsersByMatchingInterestsCommand>();
+builder.Services.AddScoped<IFilterUsersByLocationCommand, FilterUsersByLocationCommand>();
 
 //Data
 

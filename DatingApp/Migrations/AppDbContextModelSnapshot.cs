@@ -41,6 +41,10 @@ namespace DatingApp.Migrations
                     b.Property<string>("CourseName")
                         .HasColumnType("text");
 
+                    b.Property<string>("CurrentLocationRegion")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
 

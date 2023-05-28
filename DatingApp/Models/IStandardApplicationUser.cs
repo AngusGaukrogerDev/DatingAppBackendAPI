@@ -11,6 +11,7 @@ namespace DatingApp.Models
         DateTime DateOfBirth { get; set; }
         Gender Gender { get; set; }
         Orientation Orientation { get; set; }
+        string CurrentLocationRegion { get; set; }
         string Bio { get; set; }
         List<string> Interests { get; set; }
         List<string> Photos { get; set; }

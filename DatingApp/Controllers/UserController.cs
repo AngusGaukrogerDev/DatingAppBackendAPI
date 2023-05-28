@@ -28,9 +28,9 @@ namespace DatingApp.Controllers
         }
 
         [HttpPost("/api/UserController/User/CreateUser")]
-        public ActionResult CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio)
+        public ActionResult CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio, string location)
         {
-            int statusCode = _createUserCommand.CreateUser(firstName, lastName, email, dateOfBirth, gender, orientation, bio);
+            int statusCode = _createUserCommand.CreateUser(firstName, lastName, email, dateOfBirth, gender, orientation, bio, location);
 
             return Ok(statusCode);
         }

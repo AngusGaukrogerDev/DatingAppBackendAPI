@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DatingApp.Migrations
 {
-    public partial class DbInit : Migration
+    public partial class DbCleanupAndInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,8 @@ namespace DatingApp.Migrations
                     Email = table.Column<string>(type: "text", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Gender = table.Column<int>(type: "integer", nullable: false),
-                    Orientation = table.Column<int>(type: "integer", nullable: false)
+                    Orientation = table.Column<int>(type: "integer", nullable: false),
+                    CurrentLocationRegion = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
