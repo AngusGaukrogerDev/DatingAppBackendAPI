@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logic\Filters\FilterUsersByAgeCommand\" />
     <Folder Include="Logic\UserMedia\DeleteProfileImageFromBucketCommand\" />
     <Folder Include="Logic\UserMedia\UploadProfileImageToBucketCommand\" />
     <Folder Include="Migrations\" />

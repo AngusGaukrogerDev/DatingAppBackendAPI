@@ -9,7 +9,6 @@ namespace DatingApp.Logic.Filters.FilterUsersByGenderCommand
         private readonly ILogger<FilterUsersByGenderCommand> _logger;
         private readonly IAppDbContext _appDbContext;
 
-
         public FilterUsersByGenderCommand(ILogger<FilterUsersByGenderCommand> logger, IAppDbContext appDbContext)
         {
             _logger = logger;

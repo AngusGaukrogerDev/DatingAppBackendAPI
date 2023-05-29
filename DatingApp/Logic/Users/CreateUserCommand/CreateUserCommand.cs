@@ -15,15 +15,15 @@ namespace DatingApp.Logic.Users.CreateUserCommand
         {
             _logger = logger;
             _appDbContext = appDbContext;
-
         }
 
-        public int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio, string location)
+        public int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, 
+            string bio, string location, List<int> ageRange)
         {
             //TODO: Angus - Change with MinioIntegration
             List<string> interests = new List<string>{ "first", "second" };
             List<string> photos = new List<string>{ "first", "second" };
-            
+
             _appDbContext.StandardApplicationUser.Add(
                 new StandardApplicationUser
                 {
@@ -37,8 +37,9 @@ namespace DatingApp.Logic.Users.CreateUserCommand
                     Interests = interests,
                     Photos = photos,
                     CurrentLocationRegion = location, //TODO: Angus - Update to be set based off users current region
+                    AgeRange = ageRange,
                 }
-            ); 
+            ); ; 
             
             _appDbContext.SaveChanges();
 

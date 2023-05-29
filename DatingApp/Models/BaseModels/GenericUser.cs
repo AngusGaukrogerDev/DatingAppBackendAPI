@@ -12,5 +12,6 @@ namespace DatingApp.Models.BaseModels
         public Gender Gender { get; set; }
         public Orientation Orientation { get; set; }
         public string CurrentLocationRegion { get; set; }
+        public List<int> AgeRange { get; set; }
     }
 }

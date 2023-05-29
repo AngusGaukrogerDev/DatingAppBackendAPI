@@ -31,6 +31,10 @@ namespace DatingApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<List<int>>("AgeRange")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
                     b.Property<string>("Bio")
                         .IsRequired()
                         .HasColumnType("text");
