@@ -23,7 +23,7 @@ namespace DatingApp.Logic.Filters.FilterUsersByGenderCommand
 
             foreach (var interest in usersInterests)
             {
-                eligibleUsersBasedOffOrientation.AddRange(_appDbContext.StandardApplicationUser.Where(u => u.Gender == interest).ToList());
+                eligibleUsersBasedOffOrientation.AddRange(_appDbContext.StandardApplicationUser.Where(u => u.Gender == interest && u.Id != userId).ToList());
             }
 
             return eligibleUsersBasedOffOrientation;

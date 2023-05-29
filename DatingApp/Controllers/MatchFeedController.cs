@@ -1,4 +1,5 @@
 ﻿using DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand;
+using DatingApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,11 +21,11 @@ namespace DatingApp.Controllers
         }
 
         [HttpGet("/api/MatchFeedController/GetNextUserInFeed")]
-        public ActionResult GetNextUserInFeed()
+        public StandardApplicationUser GetNextUserInFeed()
         {
-            _getNextUserInFeedCommand.GetNextUserInFeed(1);
+            StandardApplicationUser nextUserToShow = _getNextUserInFeedCommand.GetNextUserInFeed(2);
 
-            return Ok();
+            return nextUserToShow;
 
         }
 

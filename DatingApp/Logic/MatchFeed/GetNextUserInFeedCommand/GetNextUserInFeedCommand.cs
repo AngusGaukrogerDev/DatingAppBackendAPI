@@ -23,17 +23,20 @@ namespace DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand
         public StandardApplicationUser GetNextUserInFeed(int userId)
         {
             //TODO: Angus - Change filter structure => Location, Gender (Based off preference),  Age, Interests
-            //StandardApplicationUser nextFilteredUser = _filterUsersByMatchingInterestsCommand.SelectUserRandomlyFromListOfUsers(userId);
-            //StandardApplicationUser nextFilteredUserByLocation = _filterUsersByLocationCommand.SelectUserRandomlyFromListOfNearbyUsers(userId);
             var random = new Random();
 
-            //List<StandardApplicationUser> filteredUsers = _filterUsersByLocationCommand.GetListOfNearbyUsers(userId);
-            List<StandardApplicationUser> filteredUsers = _filterUsersByGenderCommand.SelectUserRandomlyFromListOfUsersBasedOffCurrentUsersOrientation(userId);
-            int index = random.Next(filteredUsers.Count);
+            List<StandardApplicationUser> filteredUsersByGender = _filterUsersByGenderCommand.SelectUserRandomlyFromListOfUsersBasedOffCurrentUsersOrientation(userId);
+            List<StandardApplicationUser> filteredUsersByLocation = _filterUsersByLocationCommand.GetListOfNearbyUsers(userId);
+            List<StandardApplicationUser> filteredUsersByMatchingInterests = _filterUsersByMatchingInterestsCommand.GetFilteredUsersByInterest(userId);
+
+            List<StandardApplicationUser> filteredUsers = new List<StandardApplicationUser>();
+            filteredUsers.AddRange(filteredUsersByGender);
+            filteredUsers.AddRange(filteredUsersByLocation);
+            filteredUsers.AddRange(filteredUsersByMatchingInterests);
+            
+                int index = random.Next(filteredUsers.Count);
 
             return filteredUsers[index];
         }
-
-
     }
 }

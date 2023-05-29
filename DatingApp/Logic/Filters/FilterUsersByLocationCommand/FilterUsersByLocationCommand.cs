@@ -31,7 +31,7 @@ namespace DatingApp.Logic.Filters.FilterUsersByLocationCommand
         {
             StandardApplicationUser currentUser = _appDbContext.StandardApplicationUser.Where(u => u.Id == userId).FirstOrDefault();
 
-            List<StandardApplicationUser> nearbyUsers = _appDbContext.StandardApplicationUser.Where(u => u.CurrentLocationRegion == currentUser.CurrentLocationRegion).ToList();
+            List<StandardApplicationUser> nearbyUsers = _appDbContext.StandardApplicationUser.Where(u => u.CurrentLocationRegion == currentUser.CurrentLocationRegion && u.Id != userId).ToList();
 
             return nearbyUsers;
         }

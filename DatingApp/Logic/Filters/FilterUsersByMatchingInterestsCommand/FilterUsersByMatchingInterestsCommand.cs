@@ -33,7 +33,21 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
 
             List<StandardApplicationUser> filteredUsers = FindUsersMeetingSearchParameters(usersInterests);
 
-            return filteredUsers;
+            List<StandardApplicationUser> filteredUsersWithoutSearchingUser = new List<StandardApplicationUser>();
+
+            foreach (var filteredUser in filteredUsers)
+            {
+                if(filteredUser.Id == userId)
+                {
+                    continue;
+                }
+                else
+                {
+                    filteredUsersWithoutSearchingUser.Add(filteredUser);
+                }
+            }
+
+            return filteredUsersWithoutSearchingUser;
 
         }
 
@@ -41,8 +55,6 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
         {
 
             List<string> interests = _appDbContext.StandardApplicationUser.Where(u => u.Id == userId).Select(u => u.Interests).FirstOrDefault();
-
-            //TODO: Angus - In future make this so that all interests do not have to be a match. Will return users with just 1 or 2 interests in common for 
 
             return interests;
         }
