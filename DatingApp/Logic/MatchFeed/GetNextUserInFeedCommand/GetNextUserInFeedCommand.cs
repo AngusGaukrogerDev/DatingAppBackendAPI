@@ -29,10 +29,10 @@ namespace DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand
             //TODO: Angus - Change filter structure => Location, Gender (Based off preference),  Age, Interests
             var random = new Random();
 
-            List<StandardApplicationUser> filteredUsersByGender = _filterUsersByGenderCommand.SelectUserRandomlyFromListOfUsersBasedOffCurrentUsersOrientation(userId);
             List<StandardApplicationUser> filteredUsersByLocation = _filterUsersByLocationCommand.GetListOfNearbyUsers(userId);
-            List<StandardApplicationUser> filteredUsersByMatchingInterests = _filterUsersByMatchingInterestsCommand.GetFilteredUsersByInterest(userId);
+            List<StandardApplicationUser> filteredUsersByGender = _filterUsersByGenderCommand.SelectUserRandomlyFromListOfUsersBasedOffCurrentUsersOrientation(userId);
             List<StandardApplicationUser> filteredUsersByAge = _filterUsersByAgeCommand.GetUsersBasedOffAge(userId, filteredUsersByLocation);
+            List<StandardApplicationUser> filteredUsersByMatchingInterests = _filterUsersByMatchingInterestsCommand.GetFilteredUsersByInterest(userId);
 
 
             List<StandardApplicationUser> filteredUsers = new List<StandardApplicationUser>();
