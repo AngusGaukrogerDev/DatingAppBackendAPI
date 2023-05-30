@@ -1,5 +1,6 @@
 ﻿using DatingApp.Data;
 using DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand;
+using DatingApp.Logic.MatchFeed.HandleLongLatValuesCommand;
 using DatingApp.Models;
 
 namespace DatingApp.Logic.Filters.FilterUsersByLocationCommand
@@ -9,10 +10,13 @@ namespace DatingApp.Logic.Filters.FilterUsersByLocationCommand
         private readonly ILogger<FilterUsersByLocationCommand> _logger;
         private readonly IAppDbContext _appDbContext;
 
-        public FilterUsersByLocationCommand(ILogger<FilterUsersByLocationCommand> logger, IAppDbContext appDbContext)
+        private readonly IHandleLongLatValuesCommand _handleLongLatValuesCommand;
+        public FilterUsersByLocationCommand(ILogger<FilterUsersByLocationCommand> logger, IAppDbContext appDbContext,
+            IHandleLongLatValuesCommand handleLongLatValuesCommand)
         {
             _logger = logger;
             _appDbContext = appDbContext;
+            _handleLongLatValuesCommand = handleLongLatValuesCommand;
         }
 
         public StandardApplicationUser SelectUserRandomlyFromListOfNearbyUsers(int userId)
@@ -31,7 +35,9 @@ namespace DatingApp.Logic.Filters.FilterUsersByLocationCommand
         {
             StandardApplicationUser currentUser = _appDbContext.StandardApplicationUser.Where(u => u.Id == userId).FirstOrDefault();
 
-            List<StandardApplicationUser> nearbyUsers = _appDbContext.StandardApplicationUser.Where(u => u.CurrentLocationRegion == currentUser.CurrentLocationRegion && u.Id != userId).ToList();
+            List<StandardApplicationUser> nearbyUsers = _appDbContext.StandardApplicationUser
+                .Where(u => _handleLongLatValuesCommand.CalculateDistanceFromUser(currentUser, u) <= u.DesiredRangeinKm && u.Id != userId)
+                .ToList();
 
             return nearbyUsers;
         }

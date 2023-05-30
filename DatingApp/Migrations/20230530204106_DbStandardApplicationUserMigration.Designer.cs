@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatingApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230529145815_DbInitialisation")]
-    partial class DbInitialisation
+    [Migration("20230530204106_DbStandardApplicationUserMigration")]
+    partial class DbStandardApplicationUserMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,12 +47,17 @@ namespace DatingApp.Migrations
                     b.Property<string>("CourseName")
                         .HasColumnType("text");
 
-                    b.Property<string>("CurrentLocationRegion")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<double>("CurrentLocationLatitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("CurrentLocationLongitude")
+                        .HasColumnType("double precision");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("DesiredRangeinKm")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -71,6 +76,9 @@ namespace DatingApp.Migrations
                     b.Property<List<string>>("Interests")
                         .IsRequired()
                         .HasColumnType("text[]");
+
+                    b.Property<bool>("IsActiveUser")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("JobTitle")
                         .HasColumnType("text");

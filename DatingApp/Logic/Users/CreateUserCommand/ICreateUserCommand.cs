@@ -4,7 +4,7 @@ namespace DatingApp.Logic.Users.CreateUserCommand
 {
     public interface ICreateUserCommand
     {
-        int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio, 
-            string location, List<int> ageRange);
+        int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio,
+            double locationLat, double locationLong, int desiredRange, List<int> ageRange);
     }
 }
