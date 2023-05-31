@@ -18,7 +18,7 @@ namespace DatingApp.Logic.Users.CreateUserCommand
         }
 
         public int CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, 
-            string bio, string location, List<int> ageRange)
+            string bio, double locationLat, double locationLong, int desiredRange, List<int> ageRange)
         {
             //TODO: Angus - Change with MinioIntegration
             List<string> interests = new List<string>{ "first", "second" };
@@ -36,10 +36,12 @@ namespace DatingApp.Logic.Users.CreateUserCommand
                     Bio = bio,
                     Interests = interests,
                     Photos = photos,
-                    CurrentLocationRegion = location, //TODO: Angus - Update to be set based off users current region
+                    CurrentLocationLatitude = locationLat,
+                    CurrentLocationLongitude = locationLong,
+                    DesiredRangeinKm = desiredRange,
                     AgeRange = ageRange,
                 }
-            ); ; 
+            ); ; ; 
             
             _appDbContext.SaveChanges();
 

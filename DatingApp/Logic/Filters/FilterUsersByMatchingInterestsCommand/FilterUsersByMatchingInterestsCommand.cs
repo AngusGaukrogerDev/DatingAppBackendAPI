@@ -50,6 +50,37 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
             return filteredUsersWithoutSearchingUser;
 
         }
+        public List<StandardApplicationUser> GetFilteredUsersFromListByInterest(int userId, List<StandardApplicationUser> previouslyFilteredUsers)
+        {
+
+            List<string> usersInterests = GetUsersInterestsFromList(userId, previouslyFilteredUsers);
+
+            List<StandardApplicationUser> filteredUsers = FindUsersMeetingSearchParameters(usersInterests);
+
+            List<StandardApplicationUser> filteredUsersWithoutSearchingUser = new List<StandardApplicationUser>();
+
+            foreach (var filteredUser in filteredUsers)
+            {
+                if (filteredUser.Id == userId)
+                {
+                    continue;
+                }
+                else
+                {
+                    filteredUsersWithoutSearchingUser.Add(filteredUser);
+                }
+            }
+
+            return filteredUsersWithoutSearchingUser;
+
+        }
+        private List<string> GetUsersInterestsFromList(int userId, List<StandardApplicationUser> filteredUsers)
+        {
+
+            List<string> interests = filteredUsers.Where(u => u.Id == userId).Select(u => u.Interests).FirstOrDefault();
+
+            return interests;
+        }
 
         private List<string> GetUsersInterests(int userId)
         {
