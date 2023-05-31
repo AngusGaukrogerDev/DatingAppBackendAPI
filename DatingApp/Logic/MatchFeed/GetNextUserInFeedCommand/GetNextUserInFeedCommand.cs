@@ -34,10 +34,7 @@ namespace DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand
             List<StandardApplicationUser> filteredUsersByAge = _filterUsersByAgeCommand.GetUsersBasedOffAge(userId, filteredUsersByGender);
             List<StandardApplicationUser> filteredUsersByMatchingInterests = _filterUsersByMatchingInterestsCommand.GetFilteredUsersFromListByInterest(userId, filteredUsersByAge);
 
-
             List<StandardApplicationUser> filteredUsers = new List<StandardApplicationUser>();
-            filteredUsers.AddRange(filteredUsersByGender);
-            filteredUsers.AddRange(filteredUsersByAge);
             filteredUsers.AddRange(filteredUsersByMatchingInterests);
             
             int index = random.Next(filteredUsers.Count);
