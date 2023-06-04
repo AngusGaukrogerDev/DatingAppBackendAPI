@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DatingApp.Migrations
 {
-    public partial class DbInitialisation : Migration
+    public partial class DbStandardApplicationUserMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,13 +26,16 @@ namespace DatingApp.Migrations
                     UniversityName = table.Column<string>(type: "text", nullable: true),
                     Hometown = table.Column<string>(type: "text", nullable: true),
                     Nationality = table.Column<string>(type: "text", nullable: true),
+                    IsActiveUser = table.Column<bool>(type: "boolean", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Gender = table.Column<int>(type: "integer", nullable: false),
                     Orientation = table.Column<int>(type: "integer", nullable: false),
-                    CurrentLocationRegion = table.Column<string>(type: "text", nullable: false),
+                    CurrentLocationLatitude = table.Column<double>(type: "double precision", nullable: false),
+                    CurrentLocationLongitude = table.Column<double>(type: "double precision", nullable: false),
+                    DesiredRangeinKm = table.Column<int>(type: "integer", nullable: false),
                     AgeRange = table.Column<List<int>>(type: "integer[]", nullable: false)
                 },
                 constraints: table =>

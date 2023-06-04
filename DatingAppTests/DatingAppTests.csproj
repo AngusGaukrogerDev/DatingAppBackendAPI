@@ -23,8 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Logic\Filters\" />
-    <Folder Include="Logic\Users\" />
+    <ProjectReference Include="..\DatingApp\DatingApp.csproj" />
   </ItemGroup>
 
 </Project>

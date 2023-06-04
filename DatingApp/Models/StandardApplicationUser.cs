@@ -13,5 +13,7 @@ namespace DatingApp.Models
         public string? UniversityName { get; set; }
         public string? Hometown { get; set; }
         public string? Nationality { get; set;}
+        public bool IsActiveUser { get; set; }
+
     }
 }

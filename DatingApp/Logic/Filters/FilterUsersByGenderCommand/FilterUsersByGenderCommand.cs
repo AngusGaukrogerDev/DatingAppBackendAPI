@@ -27,7 +27,18 @@ namespace DatingApp.Logic.Filters.FilterUsersByGenderCommand
 
             return eligibleUsersBasedOffOrientation;
         }
+        public List<StandardApplicationUser> SelectUserRandomlyFromListOfFilteredUsersBasedOffCurrentUsersOrientation(int userId, List<StandardApplicationUser> filteredUsers)
+        {
+            List<Gender> usersInterests = EstablishUsersInterests(userId);
+            List<StandardApplicationUser> eligibleUsersBasedOffOrientation = new List<StandardApplicationUser>();
 
+            foreach (var interest in usersInterests)
+            {
+                eligibleUsersBasedOffOrientation.AddRange(filteredUsers.Where(u => u.Gender == interest && u.Id != userId).ToList());
+            }
+
+            return eligibleUsersBasedOffOrientation;
+        }
         private List<Gender> EstablishUsersInterests(int userId)
         {
             List<Gender> gender = new List<Gender>();

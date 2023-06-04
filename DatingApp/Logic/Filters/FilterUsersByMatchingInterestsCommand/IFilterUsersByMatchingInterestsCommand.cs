@@ -6,5 +6,6 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
     {
         StandardApplicationUser SelectUserRandomlyFromListOfUsers(int userId);
         List<StandardApplicationUser> GetFilteredUsersByInterest(int userId);
+        public List<StandardApplicationUser> GetFilteredUsersFromListByInterest(int userId, List<StandardApplicationUser> previouslyFilteredUsers);
     }
 }
