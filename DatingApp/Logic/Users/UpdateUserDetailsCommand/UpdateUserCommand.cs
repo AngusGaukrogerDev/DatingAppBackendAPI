@@ -15,15 +15,15 @@ namespace DatingApp.Logic.Users.UpdateUserDetailsCommand
             _appDbContext = appDbContext;
         }
 
-        public int UpdateUser(int id, string email, Gender gender, Orientation orientation, string bio)
+        public int UpdateUser(StandardApplicationUser updatedUser)
         {
             int _statusCode = 0;
 
-            StandardApplicationUser user = _appDbContext.StandardApplicationUser.FirstOrDefault(u => u.Id == id);
+            StandardApplicationUser user = _appDbContext.StandardApplicationUser.FirstOrDefault(u => u.Id == updatedUser.Id);
 
             if (user != null) 
             {
-                _statusCode = TestForNullValuesAndAssign(user, email, gender, orientation, bio);
+                _statusCode = TestForNullValuesAndAssign(user, updatedUser.Email, updatedUser.Gender, updatedUser.Orientation, updatedUser.Bio);
             }
             else
             {

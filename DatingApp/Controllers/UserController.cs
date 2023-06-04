@@ -1,6 +1,7 @@
 ﻿using DatingApp.Logic.Users.CreateUserCommand;
 using DatingApp.Logic.Users.DeleteUserCommand;
 using DatingApp.Logic.Users.UpdateUserDetailsCommand;
+using DatingApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static DatingApp.Constants.BaseUserConstants;
@@ -28,16 +29,15 @@ namespace DatingApp.Controllers
         }
 
         [HttpPost("/api/UserController/User/CreateUser")]
-        public ActionResult CreateUser(string firstName, string lastName, string email, DateTime dateOfBirth, Gender gender, Orientation orientation, string bio, 
-            string location, List<int> ageRange)
+        public IActionResult CreateUser(StandardApplicationUser newUser)
         {
-            int statusCode = _createUserCommand.CreateUser(firstName, lastName, email, dateOfBirth, gender, orientation, bio, location, ageRange);
+            int statusCode = _createUserCommand.CreateUser(newUser);
 
             return Ok(statusCode);
         }
 
         [HttpDelete("/api/UserController/User/DeleteUser")]
-        public ActionResult DeleteUser(int id)
+        public IActionResult DeleteUser(int id)
         {
             int statusCode = _deleteUserCommand.DeleteUser(id);
 
@@ -47,10 +47,10 @@ namespace DatingApp.Controllers
         //Make sure frontend always sends data with all args filled in for now - Even if values are the same for some args
         //May require an update for each parameter... :/
         [HttpPut("/api/UserController/User/UpdateUser")]
-        public ActionResult UpdateUser(int id,  string email, Gender gender, Orientation orientation, string bio)
+        public IActionResult UpdateUser(StandardApplicationUser updatedUserDetails)
         {
 
-            int statusCode = _updateUserCommand.UpdateUser(id, email, gender, orientation, bio);
+            int statusCode = _updateUserCommand.UpdateUser(updatedUserDetails);
 
             return Ok(statusCode);
         }

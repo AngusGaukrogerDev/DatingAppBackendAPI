@@ -16,11 +16,11 @@ namespace DatingApp.Models
         string Bio { get; set; }
         List<string> Interests { get; set; }
         List<string> Photos { get; set; }
-        public string? JobTitle { get; set; }
-        public string? CompanyName { get; set; }
-        public string? CourseName { get; set; }
-        public string? UniversityName { get; set; }
-        public string? Hometown { get; set; }
-        public string? Nationality { get; set; }
+        //public string? JobTitle { get; set; }
+        //public string? CompanyName { get; set; }
+        //public string? CourseName { get; set; }
+        //public string? UniversityName { get; set; }
+        //public string? Hometown { get; set; }
+        //public string? Nationality { get; set; }
     }
 }
