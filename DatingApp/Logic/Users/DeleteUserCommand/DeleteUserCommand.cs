@@ -19,10 +19,13 @@ namespace DatingApp.Logic.Users.DeleteUserCommand
             int _statusCode = 0;
             
             StandardApplicationUser user = _appDbContext.StandardApplicationUser.FirstOrDefault(u => u.Id == id);
-            
+            UserLikesAndMatches userLikesAndMatches = _appDbContext.UserLikesAndMatches.FirstOrDefault(u => u.Id == id);
+
             if (user != null)
             {
                 _appDbContext.StandardApplicationUser.Remove(user);
+                _appDbContext.UserLikesAndMatches.Remove(userLikesAndMatches);
+
                 _appDbContext.SaveChanges();
 
                 _statusCode = StatusCodes.Status200OK;

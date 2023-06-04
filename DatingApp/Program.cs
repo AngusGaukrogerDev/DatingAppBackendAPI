@@ -27,10 +27,6 @@ builder.Services.AddSwaggerGen();
 
 //Dependency Injection
 
-//Models
-
-builder.Services.AddScoped<IStandardApplicationUser, StandardApplicationUser>();
-
 //Logic
 
 builder.Services.AddScoped<ICreateUserCommand, CreateUserCommand>();

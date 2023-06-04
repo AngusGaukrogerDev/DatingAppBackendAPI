@@ -31,7 +31,7 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
 
             List<string> usersInterests = GetUsersInterests(userId);
 
-            List<StandardApplicationUser> filteredUsers = FindUsersMeetingSearchParameters(usersInterests);
+            List<StandardApplicationUser> filteredUsers = FindUsersMeetingSearchParametersFromDb(usersInterests);
 
             List<StandardApplicationUser> filteredUsersWithoutSearchingUser = new List<StandardApplicationUser>();
 
@@ -53,9 +53,9 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
         public List<StandardApplicationUser> GetFilteredUsersFromListByInterest(int userId, List<StandardApplicationUser> previouslyFilteredUsers)
         {
 
-            List<string> usersInterests = GetUsersInterestsFromList(userId, previouslyFilteredUsers);
+            List<string> usersInterests = GetUsersInterestsFromList(userId);
 
-            List<StandardApplicationUser> filteredUsers = FindUsersMeetingSearchParameters(usersInterests);
+            List<StandardApplicationUser> filteredUsers = FindUsersMeetingSearchParameters(usersInterests, previouslyFilteredUsers);
 
             List<StandardApplicationUser> filteredUsersWithoutSearchingUser = new List<StandardApplicationUser>();
 
@@ -74,10 +74,10 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
             return filteredUsersWithoutSearchingUser;
 
         }
-        private List<string> GetUsersInterestsFromList(int userId, List<StandardApplicationUser> filteredUsers)
+        private List<string> GetUsersInterestsFromList(int userId)
         {
 
-            List<string> interests = filteredUsers.Where(u => u.Id == userId).Select(u => u.Interests).FirstOrDefault();
+            List<string> interests = _appDbContext.StandardApplicationUser.Where(u => u.Id == userId).Select(u => u.Interests).FirstOrDefault();
 
             return interests;
         }
@@ -90,7 +90,16 @@ namespace DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand
             return interests;
         }
 
-        private List<StandardApplicationUser> FindUsersMeetingSearchParameters(List<string> searchingUsersInterests)
+        private List<StandardApplicationUser> FindUsersMeetingSearchParameters(List<string> searchingUsersInterests, List<StandardApplicationUser> listOfFilteredUsers)
+        {
+
+            List<StandardApplicationUser> usersWithMatchingInterests = listOfFilteredUsers.Where(u => searchingUsersInterests.All(interest => u.Interests.Contains(interest))).ToList();
+
+            return usersWithMatchingInterests;
+
+        }
+
+        private List<StandardApplicationUser> FindUsersMeetingSearchParametersFromDb(List<string> searchingUsersInterests)
         {
 
             List<StandardApplicationUser> usersWithMatchingInterests = _appDbContext.StandardApplicationUser.Where(u => searchingUsersInterests.All(interest => u.Interests.Contains(interest))).ToList();

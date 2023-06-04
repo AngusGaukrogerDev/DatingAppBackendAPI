@@ -2,7 +2,7 @@
 
 namespace DatingApp.Models
 {
-    public class StandardApplicationUser : GenericUser, IStandardApplicationUser
+    public class StandardApplicationUser : GenericUser
     {
         public List<string> Interests { get; set; }
         public List<string> Photos { get; set; }

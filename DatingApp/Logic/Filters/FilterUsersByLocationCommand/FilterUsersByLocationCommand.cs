@@ -30,16 +30,38 @@ namespace DatingApp.Logic.Filters.FilterUsersByLocationCommand
             return nearbyUsers[index];
 
         }
-
         public List<StandardApplicationUser> GetListOfNearbyUsers(int userId)
         {
+            List<StandardApplicationUser> eligibleNearbyUsers = new List<StandardApplicationUser>();
+
             StandardApplicationUser currentUser = _appDbContext.StandardApplicationUser.Where(u => u.Id == userId).FirstOrDefault();
 
-            List<StandardApplicationUser> nearbyUsers = _appDbContext.StandardApplicationUser
-                .Where(u => _handleLongLatValuesCommand.CalculateDistanceFromUser(currentUser, u) <= u.DesiredRangeinKm && u.Id != userId)
-                .ToList();
+            foreach (var user in _appDbContext.StandardApplicationUser)
+            {
+                if (user.Id != currentUser.Id)
+                {
+                    double distance = _handleLongLatValuesCommand.CalculateDistanceFromUser(currentUser, user);
 
-            return nearbyUsers;
+                    if (distance < user.DesiredRangeinKm)
+                    {
+                        eligibleNearbyUsers.Add(user);
+                    }
+                }
+            }
+            //List<StandardApplicationUser> nearbyUsers = _appDbContext.StandardApplicationUser
+            //    .Where(u =>  <= u.DesiredRangeinKm && u.Id != userId)
+            //    .ToList();
+            return eligibleNearbyUsers;
         }
+        //public List<StandardApplicationUser> GetListOfNearbyUsers(int userId)
+        //{
+        //    StandardApplicationUser currentUser = _appDbContext.StandardApplicationUser.Where(u => u.Id == userId).FirstOrDefault();
+
+        //    List<StandardApplicationUser> nearbyUsers = _appDbContext.StandardApplicationUser
+        //        .Where(u => _handleLongLatValuesCommand.CalculateDistanceFromUser(currentUser, u) <= u.DesiredRangeinKm && u.Id != userId)
+        //        .ToList();
+
+        //    return nearbyUsers;
+        //}
     }
 }

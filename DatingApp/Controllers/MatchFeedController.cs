@@ -23,7 +23,7 @@ namespace DatingApp.Controllers
         [HttpGet("/api/MatchFeedController/GetNextUserInFeed")]
         public StandardApplicationUser GetNextUserInFeed()
         {
-            StandardApplicationUser nextUserToShow = _getNextUserInFeedCommand.GetNextUserInFeed(6);
+            StandardApplicationUser nextUserToShow = _getNextUserInFeedCommand.GetNextUserInFeed(1);
 
             return nextUserToShow;
 

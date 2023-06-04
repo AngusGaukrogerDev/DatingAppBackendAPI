@@ -6,6 +6,7 @@ namespace DatingApp.Data
     public interface IAppDbContext
     {
         DbSet<StandardApplicationUser> StandardApplicationUser { get; set; }
+        DbSet<UserLikesAndMatches> UserLikesAndMatches { get; set; }
         int SaveChanges();
     }
 }

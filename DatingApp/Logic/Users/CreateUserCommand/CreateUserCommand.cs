@@ -12,7 +12,7 @@ namespace DatingApp.Logic.Users.CreateUserCommand
         private readonly ILogger<CreateUserCommand> _logger;
         private readonly IAppDbContext _appDbContext;
 
-        public CreateUserCommand(ILogger<CreateUserCommand> logger, IStandardApplicationUser standardApplicationUser, IAppDbContext appDbContext)
+        public CreateUserCommand(ILogger<CreateUserCommand> logger, IAppDbContext appDbContext)
         {
             _logger = logger;
             _appDbContext = appDbContext;
@@ -28,8 +28,11 @@ namespace DatingApp.Logic.Users.CreateUserCommand
             createdUser.Interests = interests;
             createdUser.Photos = photos;
 
-            _appDbContext.StandardApplicationUser.Add(createdUser);  
-            
+            _appDbContext.StandardApplicationUser.Add(createdUser);
+            _appDbContext.UserLikesAndMatches.Add(new UserLikesAndMatches
+            {
+                Id = createdUser.Id,
+            });
             _appDbContext.SaveChanges();
 
             return StatusCodes.Status200OK;
