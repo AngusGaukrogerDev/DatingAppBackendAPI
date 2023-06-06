@@ -7,6 +7,8 @@ namespace DatingApp.Data
     {
         DbSet<StandardApplicationUser> StandardApplicationUser { get; set; }
         DbSet<UserLikesAndMatches> UserLikesAndMatches { get; set; }
+        DbSet<MatchesAndConversationProgress> MatchesAndConversationProgress { get; set; }
+
         int SaveChanges();
     }
 }

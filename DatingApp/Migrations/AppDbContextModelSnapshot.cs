@@ -23,6 +23,35 @@ namespace DatingApp.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("DatingApp.Models.MatchesAndConversationProgress", b =>
+                {
+                    b.Property<int>("MatchId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("MatchId"));
+
+                    b.Property<bool>("ActiveMatch")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("ConversationLevel")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DateOfLastInteraction")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DateOfMatch")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<List<int>>("MatchedUsersIds")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
+                    b.HasKey("MatchId");
+
+                    b.ToTable("MatchesAndConversationProgress");
+                });
+
             modelBuilder.Entity("DatingApp.Models.StandardApplicationUser", b =>
                 {
                     b.Property<int>("Id")
@@ -111,17 +140,17 @@ namespace DatingApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<List<string>>("Matches")
+                    b.Property<List<int>>("Matches")
                         .IsRequired()
-                        .HasColumnType("text[]");
+                        .HasColumnType("integer[]");
 
-                    b.Property<List<string>>("ReceivedLikes")
+                    b.Property<List<int>>("ReceivedLikes")
                         .IsRequired()
-                        .HasColumnType("text[]");
+                        .HasColumnType("integer[]");
 
-                    b.Property<List<string>>("SentLikes")
+                    b.Property<List<int>>("SentLikes")
                         .IsRequired()
-                        .HasColumnType("text[]");
+                        .HasColumnType("integer[]");
 
                     b.HasKey("Id");
 

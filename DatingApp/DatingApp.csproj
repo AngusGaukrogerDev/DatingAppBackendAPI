@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Logic\Matches\CalculateConversationLevelCommand\" />
     <Folder Include="Logic\UserMedia\DeleteProfileImageFromBucketCommand\" />
     <Folder Include="Migrations\" />
   </ItemGroup>

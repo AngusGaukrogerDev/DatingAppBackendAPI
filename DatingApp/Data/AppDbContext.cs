@@ -21,5 +21,6 @@ namespace DatingApp.Data
 
         public DbSet<StandardApplicationUser> StandardApplicationUser { get; set; }
         public DbSet<UserLikesAndMatches> UserLikesAndMatches { get; set; }
+        public DbSet<MatchesAndConversationProgress> MatchesAndConversationProgress { get; set; }
     }
 }

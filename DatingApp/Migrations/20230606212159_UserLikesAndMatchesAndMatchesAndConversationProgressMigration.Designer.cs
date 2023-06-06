@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DatingApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230604200408_UserLikesAndMatches")]
-    partial class UserLikesAndMatches
+    [Migration("20230606212159_UserLikesAndMatchesAndMatchesAndConversationProgressMigration")]
+    partial class UserLikesAndMatchesAndMatchesAndConversationProgressMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,6 +24,35 @@ namespace DatingApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("DatingApp.Models.MatchesAndConversationProgress", b =>
+                {
+                    b.Property<int>("MatchId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("MatchId"));
+
+                    b.Property<bool>("ActiveMatch")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("ConversationLevel")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("DateOfLastInteraction")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DateOfMatch")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<List<int>>("MatchedUsersIds")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
+                    b.HasKey("MatchId");
+
+                    b.ToTable("MatchesAndConversationProgress");
+                });
 
             modelBuilder.Entity("DatingApp.Models.StandardApplicationUser", b =>
                 {
@@ -113,17 +142,17 @@ namespace DatingApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<List<string>>("Matches")
+                    b.Property<List<int>>("Matches")
                         .IsRequired()
-                        .HasColumnType("text[]");
+                        .HasColumnType("integer[]");
 
-                    b.Property<List<string>>("ReceivedLikes")
+                    b.Property<List<int>>("ReceivedLikes")
                         .IsRequired()
-                        .HasColumnType("text[]");
+                        .HasColumnType("integer[]");
 
-                    b.Property<List<string>>("SentLikes")
+                    b.Property<List<int>>("SentLikes")
                         .IsRequired()
-                        .HasColumnType("text[]");
+                        .HasColumnType("integer[]");
 
                     b.HasKey("Id");
 
