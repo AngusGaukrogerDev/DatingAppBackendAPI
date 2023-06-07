@@ -3,6 +3,7 @@ using DatingApp.Logic.Filters.FilterUsersByAgeCommand;
 using DatingApp.Logic.Filters.FilterUsersByGenderCommand;
 using DatingApp.Logic.Filters.FilterUsersByLocationCommand;
 using DatingApp.Logic.Filters.FilterUsersByMatchingInterestsCommand;
+using DatingApp.Logic.Matches.CheckForNewMatchesCommand;
 using DatingApp.Logic.MatchFeed.GetNextUserInFeedCommand;
 using DatingApp.Logic.MatchFeed.HandleLongLatValuesCommand;
 using DatingApp.Logic.Users.CheckUserAgeCommand;
@@ -42,6 +43,8 @@ builder.Services.AddScoped<IFilterUsersByMatchingInterestsCommand, FilterUsersBy
 builder.Services.AddScoped<IFilterUsersByLocationCommand, FilterUsersByLocationCommand>();
 builder.Services.AddScoped<IFilterUsersByGenderCommand, FilterUsersByGenderCommand>();
 builder.Services.AddScoped<IFilterUsersByAgeCommand, FilterUsersByAgeCommand>();
+
+builder.Services.AddScoped<ICheckForNewMatchesCommand, CheckForNewMatchesCommand>();
 
 //Data
 
